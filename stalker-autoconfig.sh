@@ -5,7 +5,7 @@ PASSWORD=$(zenity --entry --title="Пароль адміністратора" --
 if ! command -v zenity &> /dev/null
 then
     # Якщо zenity не знайдено, вивести сповіщення
-    notify-send "Zenity не знайдено" "Будь ласка, встановіть zenity за допомогою команди: sudo apt install zenity"
+    notify-send "Zenity не знайдено" "Будь ласка, встановіть zenity"
     exit 1
 fi
 
