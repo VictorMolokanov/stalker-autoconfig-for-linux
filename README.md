@@ -3,7 +3,7 @@ stalker autoconfig для лінукса
 Це зручний GUI скрипт/сценарій для автоматичного налаштування вашого STALKER на лінуксі і конфігурації префіксу Proton або Wine.
   
 Інструкція
-1. git https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
+1. git clone https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
    або wget https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
 
 2. sudo chmod +x ~/stalkerautoconfig.sh (або там де ви його завантажили)  
@@ -19,7 +19,7 @@ stalker autoconfig for linux
 This is a convenient GUI script/script for automatic configuration of your STALKER on linux and configuration of the Proton or Wine prefix.  
   
 Instructions  
-1. git https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
+1. git clone https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
 or wget https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
 
 2. sudo chmod +x ~/stalkerautoconfig.sh (or where you downloaded it)  
