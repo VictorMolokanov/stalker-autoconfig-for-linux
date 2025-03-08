@@ -1,4 +1,4 @@
-# stalker-autoconfig-for-linux
+# stalker-for-linux
 stalker autoconfig для лінукса
 Це зручний GUI скрипт/сценарій для автоматичного налаштування вашого STALKER на лінуксі і конфігурації префіксу Proton або Wine.
   
