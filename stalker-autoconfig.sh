@@ -74,7 +74,7 @@ Language=$(zenity --list --title="Choose Language/Оберіть Мову" --rad
     #інсталяція d3dcompiler-ів
     INSTALLEDD="Встановленно Бібліотеку"
     #фінал
-    FINALACORD="Було успішно налаштовано, ваш мод "
+    FINALACORD="Було успішно налаштовано ваш мод "
     FINALACORDWINE="Ваші моди повинні запрацювати на цьому префіксі"
 elif [ "$Language" == "English" ]; then
     #Перевірка наявності програм
@@ -193,13 +193,14 @@ if [ -z "$proton_id" ]; then
     #Фінальний акорд, привітання що мод працює
     Gamefinal=$( echo "$selected" | sed -e 's/Non-Steam shortcut:[[:space:]]*//' -e 's/[[:space:]]*(.*//')
     zenity --info --text "$FINALACORD $Gamefinal"
-    notifg
+    notify-send "$FINALACORD $Gamefinal"
+    exit 1
 
 
  #wine
 
  elif [ "$Engine" == "Wine" ]; then
-
+: << 'END'
   if ! command -v winetricks &> /dev/null; then
     ERROR00="winetricks"
     TEXTMESSG="$WINETRICKINSTER"
@@ -216,15 +217,14 @@ if [ -z "$proton_id" ]; then
     TEXTMESSG="$WINEINST"
     loging_text
  fi
-    ERROR00="winetricks"
-    ERROR00="wine"
+
  if [ "$ERROR00" == "winetricks" ] || [ "$ERROR01" == "wine" ]; then
         zenity --error --text "$MISSING $ERROR00, $ERROR01 $MISSEND"
         exit 1
     else
     echo "все добре"
         fi
-
+END
 
     wine_prefix=$(ls -d ~/.local/share/wineprefixes/*/ \
     ~/.wine  )
@@ -266,7 +266,8 @@ if [ -z "$proton_id" ]; then
     loging_text
     #фінальний акорд
     zenity --info --text "$FINALACORDWINE $selected"
-    notifg
+    notify-send "$FINALACORDWINE $selected"
+    exit 1
 
  elif [ -z "$Engine" ]; then
     zenity --error --text="$ENGINENOCHOOSE"
