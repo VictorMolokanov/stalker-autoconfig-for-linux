@@ -55,6 +55,10 @@ Language=$(zenity --list --title="Choose Language/Оберіть Мову" --rad
     PROTONLAUNCHINSTER="LOG: protontricks-launch ВІДУСТНІЙ, Встановіть або перевстановіть пакунок!!!"
     MISSING="Відсутні або зламані пакунки"
     MISSEND="Будь-ласка встановіть або перевстановіть наявні пакунки"
+    WINETRICKSINSTER="LOG: winetricks ВІДУСТНІЙ, Встановіть або перевстановіть пакунок!!!"
+    WINETRICKSINST="LOG: winetricks на місці"
+    WINEINST="LOG: wine на місці"
+    WINEINSTER="LOG: wine ВІДУСТНІЙ, Встановіть або перевстановіть пакунок!!!"
     #Вибір рушія
     CHOOSEENG="Вибір рушія"
     CHOOSEEV="Вибір" #вибір усюди
@@ -71,6 +75,7 @@ Language=$(zenity --list --title="Choose Language/Оберіть Мову" --rad
     INSTALLEDD="Встановленно Бібліотеку"
     #фінал
     FINALACORD="Було успішно налаштовано, ваш мод "
+    FINALACORDWINE="Ваші моди повинні запрацювати на цьому префіксі"
 elif [ "$Language" == "English" ]; then
     #Перевірка наявності програм
     PROTONINST="LOG: protontricks installed"
@@ -97,6 +102,7 @@ elif [ "$Language" == "English" ]; then
     INSTALLEDD="Installed library"
     #Фінальний акорд
     FINALACORD="Your Mod should work "
+    FINALACORDWINE="Your Mods should work on this prefix"
 elif [ -z "$Language" ]; then
     zenity --error --text="Ви не обрали жодної мови!/No Language Choosen!"
     exit 1
@@ -130,6 +136,7 @@ fi
 
  if [ "$ERROR00" == "protontricks" ] || [ "$ERROR01" == "wget" ] || [ "$ERROR02" == "protontricks-launch" ]; then
         zenity --error --text "$MISSING $ERROR00, $ERROR01, $ERROR02 $MISSEND"
+        exit 1
     else
     echo "все добре"
         fi
@@ -187,9 +194,80 @@ if [ -z "$proton_id" ]; then
     Gamefinal=$( echo "$selected" | sed -e 's/Non-Steam shortcut:[[:space:]]*//' -e 's/[[:space:]]*(.*//')
     zenity --info --text "$FINALACORD $Gamefinal"
     notifg
+
+
+ #wine
+
  elif [ "$Engine" == "Wine" ]; then
-    TEXTMESSG="НЕ ГОТОВЕ/DIDNT READY"
+
+  if ! command -v winetricks &> /dev/null; then
+    ERROR00="winetricks"
+    TEXTMESSG="$WINETRICKINSTER"
     loging_text
+    else
+    TEXTMESSG="$WINETRICKSINST"
+    loging_text
+ fi
+ if ! command -v wine &> /dev/null; then
+    ERROR01="wine"
+        TEXTMESSG="$WINEINSTER"
+    loging_text
+    else
+    TEXTMESSG="$WINEINST"
+    loging_text
+ fi
+    ERROR00="winetricks"
+    ERROR00="wine"
+ if [ "$ERROR00" == "winetricks" ] || [ "$ERROR01" == "wine" ]; then
+        zenity --error --text "$MISSING $ERROR00, $ERROR01 $MISSEND"
+        exit 1
+    else
+    echo "все добре"
+        fi
+
+
+    wine_prefix=$(ls -d ~/.local/share/wineprefixes/*/ \
+    ~/.wine  )
+    selected=$(echo "$wine_prefix" | zenity --list --title="$PREFIXES" --column="$PREFIX" --height=400 --width=600 )
+
+    if [ -z "$selected" ]; then
+ zenity --error --text="$NOCHOOSE"
+    exit 1
+ fi
+    #саме скачування
+   for i in "${!Component_url[@]}"; do
+      downloading "${Component_url[$i]}" "${Component_name[$i]}"
+    done
+    #інсталяція драйверів
+     WINEPREFIX=$selected wine  "$HOME/oalinst.exe"
+    WINEPREFIX=$selected wine  "$HOME/vcredict.exe"
+    WINEPREFIX=$selected wine "$HOME/Xvid.exe"
+    #інсталяція компіляторів
+    WINEPREFIX=$selected winetricks d3dcompiler_43
+    TEXTMESSG="$INSTALLEDD $D3DCOMPILER_43"
+    loging_text
+    WINEPREFIX=$selected winetricks d3dcompiler_47
+        TEXTMESSG="$INSTALLEDD $D3DCOMPILER_47"
+    loging_text
+    WINEPREFIX=$selected winetricks d3dx10
+        TEXTMESSG="$INSTALLEDD $D3DX10"
+    loging_text
+    WINEPREFIX=$selected winetricks d3dx10_43
+        TEXTMESSG="$INSTALLEDD $D3DX10_43"
+    loging_text
+    WINEPREFIX=$selected winetricks d3dx11_43
+        TEXTMESSG="$INSTALLEDD $D3DX11_43"
+    loging_text
+    WINEPREFIX=$selected winetricks d3dx9
+        TEXTMESSG="$INSTALLEDD $D3DX9"
+    loging_text
+    WINEPREFIX=$selected winetricks d3dx9_43
+        TEXTMESSG="$INSTALLEDD $D3DX9_43"
+    loging_text
+    #фінальний акорд
+    zenity --info --text "$FINALACORDWINE $selected"
+    notifg
+
  elif [ -z "$Engine" ]; then
     zenity --error --text="$ENGINENOCHOOSE"
     exit 1
