@@ -26,6 +26,14 @@ downloading() {
   }
   TEXTMESSG="СЛАВА УКРАЇНІ!"
       loging_text
+#назва бібліотек
+    D3DCOMPILER_43="d3dcompiler_43"
+    D3DCOMPILER_47="d3dcompiler_47"
+    D3DX10="d3dx10"
+    D3DX10_43="d3dx10_43"
+    D3DX11_43="d3dx11_43"
+    D3DX9="d3dx9"
+    D3DX9_43="d3dx9_43"
 
 
 
@@ -55,21 +63,40 @@ Language=$(zenity --list --title="Choose Language/Оберіть Мову" --rad
     #Префікси стім
     PREFIXES="Префікси"
     PREFIX="Префікс"
-    NOCHOOSE="Не вибрано жодного префіксу!" #невибрано ніхуя
+    NOCHOOSE="Не вибрано жодного префіксу!"
     #Завантаження
     DOWNLOADED="LOG: Успішно Завантажено"
     ERRORDOWNLOAD="LOG: Не вдалось Завантажити"
-    #Інсталяція програм
+    #інсталяція d3dcompiler-ів
+    INSTALLEDD="Встановленно Бібліотеку"
+    #фінал
     FINALACORD="Було успішно налаштовано, ваш мод "
 elif [ "$Language" == "English" ]; then
-     CHOOSEENG="Choose Engine"
-    CHOOSEEV="CHOOSE" #вибір усюди
+    #Перевірка наявності програм
+    PROTONINST="LOG: protontricks installed"
+    PROTONINSTER="LOG: ARE MISSING, Please Install or Reinstall this package!!!"
+    WGETINST="LOG: Wget installed"
+    WGETINSTER="LOG: Wget ARE MISSING, Please Install or Reinstall this package!!!"
+    PROTONLAUNCHINST="LOG: installed"
+    PROTONLAUNCHINSTER="LOG: protontricks-launch ARE MISSING, Please Install or Reinstall this package!!!"
+    MISSING="Missing or broken packages"
+    MISSEND="Please install or reinstall thi packages"
+    #Вибір рушія
+    CHOOSEENG="Choose Engine"
+    CHOOSEEV="Choose" #вибір усюди
     ENGINE="Engine"
+    ENGINENOCHOOSE="Engine aren't Choosen!"
     #Префікси стім
     PREFIXES="Prefixes"
-    PREFIX="Prefix"
-    NOCHOOSE="No one Prefix are choosen!" #невибрано ніхуя
-    ENGINENOCHOOSE=""
+    PREFIX="Games"
+    NOCHOOSE="Didn't Choosen Prefix!"
+    #Завантаження
+    DOWNLOADED="LOG: Succesful Downloaded"
+    ERRORDOWNLOAD="LOG: Can't download"
+        #інсталяція d3dcompiler-ів
+    INSTALLEDD="Installed library"
+    #Фінальний акорд
+    FINALACORD="Your Mod should work "
 elif [ -z "$Language" ]; then
     zenity --error --text="Ви не обрали жодної мови!/No Language Choosen!"
     exit 1
@@ -136,12 +163,26 @@ if [ -z "$proton_id" ]; then
     protontricks-launch --appid $proton_id "$HOME/Xvid.exe"
     #інсталяція компіляторів
         protontricks $proton_id d3dcompiler_43
+    TEXTMESSG="$INSTALLEDD $D3DCOMPILER_43"
+    loging_text
     protontricks $proton_id d3dcompiler_47
+        TEXTMESSG="$INSTALLEDD $D3DCOMPILER_47"
+    loging_text
     protontricks $proton_id d3dx10
+        TEXTMESSG="$INSTALLEDD $D3DX10"
+    loging_text
     protontricks $proton_id d3dx10_43
+        TEXTMESSG="$INSTALLEDD $D3DX10_43"
+    loging_text
     protontricks $proton_id d3dx11_43
+        TEXTMESSG="$INSTALLEDD $D3DX11_43"
+    loging_text
     protontricks $proton_id d3dx9
+        TEXTMESSG="$INSTALLEDD $D3DX9"
+    loging_text
     protontricks $proton_id d3dx9_43
+        TEXTMESSG="$INSTALLEDD $D3DX9_43"
+    loging_text
     #Фінальний акорд, привітання що мод працює
     Gamefinal=$( echo "$selected" | sed -e 's/Non-Steam shortcut:[[:space:]]*//' -e 's/[[:space:]]*(.*//')
     zenity --info --text "$FINALACORD $Gamefinal"
