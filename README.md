@@ -7,7 +7,7 @@ stalker autoconfig для лінукса
    або wget https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
 
 2. sudo chmod +x ~/stalkerautoconfig.sh (або там де ви його завантажили)  
-3. введіть пароль адміна і оберіть ваш префікс Proton або Wine(wine ще не завершений)
+3. введіть пароль адміна і оберіть ваш префікс Proton або Wine(wine може працювати гірше за proton)
 4. Дочекайтесь завантаження драйверів
 5. Відкриються від 3 файлів для інсталяції, робіть так як просять інсталятори аби встановити драйвера
 6. Інсталюються DLL компоненти
@@ -23,7 +23,7 @@ Instructions
 or wget https://github.com/VictorMolokanov/stalker-autoconfig-for-linux/blob/main/stalker-autoconfig.sh  
 
 2. sudo chmod +x ~/stalkerautoconfig.sh (or where you downloaded it)  
-3. enter the admin password and choose your Proton or Wine prefix (wine is not finished yet)  
+3. enter the admin password and choose your Proton or Wine prefix (wine can work worse than proton)  
 4. Wait for the drivers to load  
 5. 3 files will open for installation, do as the installers ask to install the drivers  
 6. DLL components are installed  
