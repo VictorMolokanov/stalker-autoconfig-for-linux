@@ -14,7 +14,7 @@ sudo chmod +x  ~/stalker-autoconfig-for-linux/stalker-autoconfig.sh
 5. Інсталюються DLL компоненти
 6. Ваш мод для гри готовий
 
-P.S. я тупанув і люди можуть випадково натиснути гаразд і не зрозуміти чи встановилось воно чи ні.
+P.S. ви можете випадково натиснути гаразд в кінці і не зрозуміти чи встановилось воно чи ні.
 ------------------------------------------------------------------------------------------------------
 stalker autoconfig for linux
 This is a convenient GUI script/script for automatic configuration of your STALKER on linux and configuration of the Proton or Wine prefix.  
