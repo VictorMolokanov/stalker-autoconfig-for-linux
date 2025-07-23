@@ -8,7 +8,7 @@ git clone https://github.com/VictorMolokanov/stalker-autoconfig-for-linux.git
 sudo chmod +x  ~/stalker-autoconfig-for-linux/stalker-autoconfig.sh
 ~/stalker-autoconfig-for-linux/stalker-autoconfig.sh 
 
-2.оберіть ваш префікс Proton або Wine(wine може працювати гірше за proton).                       
+2. оберіть ваш префікс Proton або Wine(wine може працювати гірше за proton).                       
 3. Дочекайтесь завантаження драйверів.  
 4. Відкриються від 3 файлів для інсталяції, робіть так як просять інсталятори аби встановити драйвера.  
 5. Інсталюються DLL компоненти.    
